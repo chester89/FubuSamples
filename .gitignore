@@ -1,0 +1,12 @@
+obj
+bin
+packages/*
+_ReSharper.*
+*sln.DotSettings.*
+*.csproj.user
+*.resharper
+*.resharper.user
+*.suo
+*.cache
+*.swp
+*.nupkg

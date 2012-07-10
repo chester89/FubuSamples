@@ -1,0 +1,19 @@
+﻿<viewdata model="FubuSamples.Web.Handlers.FormModel" />
+<html>
+	<head>
+		<title>Please log in, dear user</title>
+	</head>
+	<body>
+		<form action="">
+			<p>
+				<label for="Login">Login: ${this.InputFor(m => m.Login)}</label>				
+			</p>
+			<p>
+				<label for="Password">Password: ${this.InputFor(m => m.Password)}</label>
+			</p>
+
+			<input type="submit" value="Войти" />
+		</form>
+		
+	</body>
+</html>
