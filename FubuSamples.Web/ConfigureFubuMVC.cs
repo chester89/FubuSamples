@@ -1,5 +1,6 @@
 using FubuMVC.Core;
 using FubuMVC.Spark;
+using FubuSamples.Web.Handlers;
 
 namespace FubuSamples.Web
 {
@@ -7,27 +8,38 @@ namespace FubuSamples.Web
     {
         public ConfigureFubuMVC()
         {
-            //Routes.HomeIs<MyHomeController>(x => x.Index());
-            // This line turns on the basic diagnostics and request tracing
+            //// This line turns on the basic diagnostics and request tracing
+            //IncludeDiagnostics(true);
+
+            //// All public methods from concrete classes ending in "Controller"
+            //// in this assembly are assumed to be action methods
+            //Actions.IncludeClassesSuffixedWithController();
+
+            //this.UseSpark();
+
+            //// Policies
+            //Routes
+            //    .ConstrainToHttpMethod(x => x.Method.Name.Contains("Get"), "Get")
+            //    .ConstrainToHttpMethod(x => x.Method.Name.Contains("Post"), "Post")
+            //    .IgnoreControllerNamesEntirely()
+            //    .IgnoreMethodSuffix("Html")
+            //    .RootAtAssemblyNamespace();
+
+            //// Match views to action methods by matching
+            //// on model type, view name, and namespace
+            //Views.TryToAttachWithDefaultConventions();
             IncludeDiagnostics(true);
-
-            // All public methods from concrete classes ending in "Controller"
-            // in this assembly are assumed to be action methods
-            Actions.IncludeClassesSuffixedWithController();
-
             this.UseSpark();
+            Applies.ToThisAssembly();
 
-            // Policies
-            Routes
-                .ConstrainToHttpMethod(x => x.Method.Name.Contains("Get"), "Get")
-                .ConstrainToHttpMethod(x => x.Method.Name.Contains("Post"), "Post")
-                .IgnoreControllerNamesEntirely()
-                .IgnoreMethodSuffix("Html")
-                .RootAtAssemblyNamespace();
+            Actions
+                .IncludeTypes(t => t.Namespace.StartsWith(typeof(HandlerUrlPolicy).Namespace) && t.Name.EndsWith("Handler"))
+                .IncludeMethods(act => act.Name == "Execute");
 
-            // Match views to action methods by matching
-            // on model type, view name, and namespace
-            Views.TryToAttachWithDefaultConventions();
+            Routes.UrlPolicy<HandlerUrlPolicy>();
+
+            Output.ToJson.WhenCallMatches(action => action.Returns<AjaxResponse>());
+            Views.TryToAttach(findViews => findViews.by_ViewModel());
         }
     }
 }

@@ -107,19 +107,9 @@
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Handlers\HelloWorldController.cs" />
     <Compile Include="Handlers\SparkController.cs" />
+    <Compile Include="Handlers\TryoutHandler.cs" />
+    <Compile Include="HandlerUrlPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Login.spark.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Login.spark.designer.cs">
-      <DependentUpon>Login.spark.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Name.spark.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Name.spark.designer.cs">
-      <DependentUpon>Name.spark.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

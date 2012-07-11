@@ -11,20 +11,6 @@ namespace FubuSamples.Web.Handlers
         {
             return new HelloViewModel() { Name = input.Name };
         }
-
-        public FormModel GetLogin(InputModel input)
-        {
-            return new FormModel()
-                       {
-                           Login = "gleb",
-                           Password = "12345"
-                       };
-        }
-
-        public string PostLogin(FormModel model)
-        {
-            return string.Format("the data is {0}-{1}", model.Login, model.Password);
-        }
     }
 
     public class InputModel
