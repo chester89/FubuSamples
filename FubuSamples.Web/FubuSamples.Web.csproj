@@ -105,10 +105,14 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="AjaxResponse.cs" />
     <Compile Include="Handlers\HelloWorldController.cs" />
+    <Compile Include="Handlers\LoginController.cs" />
     <Compile Include="Handlers\SparkController.cs" />
     <Compile Include="Handlers\TryoutHandler.cs" />
     <Compile Include="HandlerUrlPolicy.cs" />
+    <Compile Include="PageExtensions.cs" />
+    <Compile Include="PasswordTag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

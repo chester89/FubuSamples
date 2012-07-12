@@ -31,14 +31,29 @@ namespace FubuSamples.Web
             IncludeDiagnostics(true);
             this.UseSpark();
             Applies.ToThisAssembly();
+            Output.ToJson.WhenCallMatches(action => action.Returns<AjaxResponse>());
 
+            //HandlerStyle();
+            ControllerStyle();
+        }
+
+        private void ControllerStyle()
+        {
+            Actions.IncludeTypesNamed(x => x.EndsWith("Controller"));
+            Views.TryToAttach(findViews => findViews.by_ViewModel());
+            Routes
+                .IgnoreControllerNamespaceEntirely()
+                .ConstrainToHttpMethod(x => !x.HasInput, "Get")
+                .ConstrainToHttpMethod(x => x.HasInput, "Post");
+        }
+
+        private void HandlerStyle()
+        {
             Actions
-                .IncludeTypes(t => t.Namespace.StartsWith(typeof(HandlerUrlPolicy).Namespace) && t.Name.EndsWith("Handler"))
+                .IncludeTypes(t => t.Namespace.StartsWith(typeof (HandlerUrlPolicy).Namespace) && t.Name.EndsWith("Handler"))
                 .IncludeMethods(act => act.Name == "Execute");
 
             Routes.UrlPolicy<HandlerUrlPolicy>();
-
-            Output.ToJson.WhenCallMatches(action => action.Returns<AjaxResponse>());
             Views.TryToAttach(findViews => findViews.by_ViewModel());
         }
     }

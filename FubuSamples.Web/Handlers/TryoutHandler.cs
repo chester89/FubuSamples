@@ -24,10 +24,4 @@ namespace FubuSamples.Web.Handlers
             return string.Format("the data is {0}-{1}", model.Login, model.Password);
         }
     }
-
-    public class AjaxResponse
-    {
-        public bool Success { get; set; }
-        public object Item { get; set; }
-    }
 }
