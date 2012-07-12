@@ -4,12 +4,12 @@
 		<title>Please log in, dear user</title>
 	</head>
 	<body>
-		${this.FormFor(new FubuSamples.Web.Handlers.FormModel())}
+		${this.FormFor(Model)}
 			<p>
-				<label for="Login">Login: ${this.InputFor(m => m.Login)}</label>				
+				${this.LabelFor(m => m.Login)} ${this.InputFor(m => m.Login)}	
 			</p>
 			<p>
-				<label for="Password">Password: ${this.InputFor(m => m.Password)}</label>
+				${this.LabelFor(m => m.Password)} ${this.InputFor(m => m.Password)}
 			</p>
 
 			<input type="submit" value="Войти" />	
