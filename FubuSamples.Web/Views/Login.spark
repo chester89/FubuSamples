@@ -10,7 +10,7 @@
 				${this.LabelFor(m => m.Login)} ${this.InputFor(m => m.Login)}	
 			</p>
 			<p>
-				${this.LabelFor(m => m.Password)} ${this.PasswordFor(m => m.Password)}
+				${this.LabelFor(m => m.Password)} ${this.InputFor(m => m.Password)}
 			</p>
 
 			<input type="submit" value="Войти" />	

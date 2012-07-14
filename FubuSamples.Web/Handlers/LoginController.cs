@@ -9,7 +9,6 @@ namespace FubuSamples.Web.Handlers
     {
         public FormModel Index()
         {
-            var s = PageExtensions.PasswordFor(null, "hello", p => p.Length);
             return new FormModel()
                        {
                            Login = "Gleb",

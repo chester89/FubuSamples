@@ -10,11 +10,13 @@ namespace FubuSamples.Web
 {
     public static class PageExtensions
     {
+        private static string defaultName = "Password";
+
         public static HtmlTag PasswordFor<T>(this IFubuPage page, T model, Expression<Func<T, object>> expression) where T: class
         {
             var password = new PasswordTag();
             password.Attr("value", expression.Compile()(model));
-            password.Attr("name", "Password");
+            password.Attr("name", defaultName);
             return password;
         }
 
@@ -22,7 +24,7 @@ namespace FubuSamples.Web
         {
             var password = new PasswordTag();
             password.Attr("value", expression.Compile()(page.Model));
-            password.Attr("name", "Password");
+            password.Attr("name", defaultName);
             return password;
         }
 
@@ -30,7 +32,8 @@ namespace FubuSamples.Web
         {
             var password = new PasswordTag();
             password.Attr("value", expression.Compile()(default(T)));
-            password.Attr("name", "Password");
+            //what to do here? how to get the value? ====^^^^^
+            password.Attr("name", defaultName);
             return password;
         }
     }
