@@ -7,7 +7,7 @@ using FubuSamples.Web.Handlers;
 
 namespace FubuSamples.Web.Validation
 {
-    public class FormModelValidator: AbstractValidator<FormModel>
+    public class FormModelValidator: AbstractValidator<FormOutputModel>
     {
         public FormModelValidator()
         {

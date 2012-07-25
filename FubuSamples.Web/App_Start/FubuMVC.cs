@@ -19,8 +19,6 @@ namespace FubuSamples.Web.App_Start
                                                     // for this application.  FubuRegistry classes 
                                                     // are used to register conventions, policies,
                                                     // and various other parts of a FubuMVC application
-
-
                 // FubuMVC requires an IoC container for its own internals.
                 // In this case, we're using a brand new StructureMap container,
                 // but FubuMVC just adds configuration to an IoC container so

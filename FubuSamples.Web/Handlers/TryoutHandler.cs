@@ -7,9 +7,9 @@ namespace FubuSamples.Web.Handlers
 {
     public class LoginHandler
     {
-         public FormModel Execute(InputModel input)
+         public FormOutputModel Execute(InputModel input)
         {
-            return new FormModel()
+            return new FormOutputModel()
             {
                 Login = "gleb",
                 Password = "12345"
@@ -19,7 +19,7 @@ namespace FubuSamples.Web.Handlers
 
     public class ShowHandler
     {
-        public string Execute(FormModel model)
+        public string Execute(FormOutputModel model)
         {
             return string.Format("the data is {0}-{1}", model.Login, model.Password);
         }

@@ -98,6 +98,8 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="App_Start\ValidationRegistry.cs" />
+    <Compile Include="AuthenticationConvention.cs" />
+    <Compile Include="AuthenticationRequiredBehaviour.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="AjaxResponse.cs" />
     <Compile Include="Handlers\HelloWorldController.cs" />
@@ -122,6 +124,7 @@
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Enter.spark" />
     <None Include="Views\Login.spark">
       <SubType>Designer</SubType>
     </None>

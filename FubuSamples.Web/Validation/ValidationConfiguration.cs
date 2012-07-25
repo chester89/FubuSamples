@@ -11,8 +11,9 @@ namespace FubuSamples.Web.Validation
     {
         public void Configure(BehaviorGraph graph)
         {
+            //graph.Services.ServicesFor(typeof(IValidator<>).MakeGenericType(x.InputType()))
             graph.Actions()
-                .Where(x => x.HasInput/* && ObjectFactory.Model.HasDefaultImplementationFor(typeof(IValidator<>).MakeGenericType(x.InputType()))*/)
+                .Where(x => x.HasInput && ObjectFactory.Model.HasDefaultImplementationFor(typeof(IValidator<>).MakeGenericType(x.InputType())))
                 .Each(x => x.AddBefore(new Wrapper(typeof(ValidationBehaviour<>).MakeGenericType(x.InputType()))));
         }
     }

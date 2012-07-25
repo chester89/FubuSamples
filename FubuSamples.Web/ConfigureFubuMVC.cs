@@ -33,11 +33,13 @@ namespace FubuSamples.Web
             //// Match views to action methods by matching
             //// on model type, view name, and namespace
             //Views.TryToAttachWithDefaultConventions();
+
             IncludeDiagnostics(true);
             ApplyConvention<ValidationConfiguration>();
             this.UseSpark();
             Applies.ToThisAssembly();
             Output.ToJson.WhenCallMatches(action => action.Returns<AjaxResponse>());
+            ApplyConvention<AuthenticationConvention>();
 
             //HandlerStyle();
             ControllerStyle();
@@ -50,8 +52,8 @@ namespace FubuSamples.Web
             Views.TryToAttach(findViews => findViews.by_ViewModel());
             Routes
                 .IgnoreControllerNamespaceEntirely()
-                .ConstrainToHttpMethod(x => !x.HasInput, "Get")
-                .ConstrainToHttpMethod(x => x.HasInput, "Post");
+                .ConstrainToHttpMethod(x => !x.HasInput || x.InputType().Name.Contains("Input"), "Get")
+                .ConstrainToHttpMethod(x => x.HasInput && x.InputType().Name.Contains("Output"), "Post");
         }
 
         private void HandlerStyle()

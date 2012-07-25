@@ -1,8 +1,8 @@
-﻿<viewdata model="FubuSamples.Web.Handlers.FormOutputModel" />
+﻿<viewdata model="FubuSamples.Web.Handlers.LoginOutputModel" />
 <use namespace="FubuSamples.Web" />
 <html>
 	<head>
-		<title>Please log in, dear user</title>
+		<title>Please log in, secure form here lol</title>
 	</head>
 	<body>
 		${this.FormFor(Model)}

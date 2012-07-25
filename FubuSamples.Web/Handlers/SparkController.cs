@@ -17,7 +17,7 @@ namespace FubuSamples.Web.Handlers
     {
     }
 
-    public class FormModel
+    public class FormOutputModel
     {
         public string Login { get; set; }
         public string Password { get; set; }

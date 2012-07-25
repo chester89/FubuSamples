@@ -10,7 +10,7 @@ namespace FubuSamples.Web.App_Start
     {
         public ValidationRegistry()
         {
-            For<IValidator<FormModel>>().Use<FormModelValidator>();
+            For<IValidator<FormOutputModel>>().Use<FormModelValidator>();
             For<IContinuationDirector>().Use<ContinuationHandler>();
             //Scan(sc =>
             //         {
