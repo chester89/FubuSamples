@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
+using FubuMVC.Core.Http;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
@@ -14,13 +15,15 @@ namespace FubuSamples.Web
     public class AuthenticationRequiredBehaviour: BasicBehavior
     {
         private readonly ISecurityContext securityContext;
+        private readonly ICurrentHttpRequest httpRequest;
         private readonly IUrlRegistry urlRegistry;
         private readonly IOutputWriter outputWriter;
 
-        public AuthenticationRequiredBehaviour(ISecurityContext securityContext, IUrlRegistry urlRegistry, IOutputWriter outputWriter): 
+        public AuthenticationRequiredBehaviour(ISecurityContext securityContext, ICurrentHttpRequest httpRequest, IUrlRegistry urlRegistry, IOutputWriter outputWriter): 
             base(PartialBehavior.Ignored)
         {
             this.securityContext = securityContext;
+            this.httpRequest = httpRequest;
             this.urlRegistry = urlRegistry;
             this.outputWriter = outputWriter;
         }
@@ -31,8 +34,14 @@ namespace FubuSamples.Web
             {
                 return DoNext.Continue;
             }
-            var url = urlRegistry.UrlFor<LoginOutputModel>();
-            outputWriter.RedirectToUrl(url);
+
+            var loginModel = new LoginOutputModel();
+            //if user didn't specifically type login url in a browser - it's a redirect
+            if (httpRequest.RawUrl() != urlRegistry.UrlFor<LoginOutputModel>())
+            {
+                loginModel.ReturnUrl = httpRequest.RawUrl();
+            }
+            outputWriter.RedirectToUrl(urlRegistry.UrlFor(loginModel));
             return DoNext.Stop;
         }
     }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FubuCore;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Security;
-using FubuMVC.Core.Urls;
 
 namespace FubuSamples.Web.Handlers
 {
@@ -28,13 +28,18 @@ namespace FubuSamples.Web.Handlers
             return new LoginOutputModel();
         }
 
-        public string Login(LoginOutputModel model)
+        public FubuContinuation Login(LoginOutputModel model)
         {
             if (model.Login.Length > 2)
             {
                 authenticationContext.ThisUserHasBeenAuthenticated(model.Login, false);
+                if (!model.ReturnUrl.IsEmpty())
+                {
+                    return FubuContinuation.RedirectTo(model.ReturnUrl);
+                }
             }
-            return string.Format("You entered {0} and {1}", model.Login, model.Password);
+            return FubuContinuation.RedirectTo<LoginController>(c => c.Index());
+            //return string.Format("You entered {0} and {1}", model.Login, model.Password);
         }
 
         public FormOutputModel Index()
@@ -57,6 +62,7 @@ namespace FubuSamples.Web.Handlers
         public string Login { get; set; }
         public string Password { get; set; }
         public string RepeatPassword { get; set; }
+        public string ReturnUrl { get; set; }
     }
 
     public class SecureAttribute: Attribute

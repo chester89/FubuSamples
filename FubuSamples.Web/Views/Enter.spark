@@ -1,11 +1,12 @@
 ﻿<viewdata model="FubuSamples.Web.Handlers.LoginOutputModel" />
-<use namespace="FubuSamples.Web" />
+
 <html>
 	<head>
 		<title>Please log in, secure form here lol</title>
 	</head>
 	<body>
 		${this.FormFor(Model)}
+            <input type="hidden" value="${Model.ReturnUrl}" />
 			<p>
 				${this.LabelFor(m => m.Login)} ${this.InputFor(m => m.Login)}	
 			</p>

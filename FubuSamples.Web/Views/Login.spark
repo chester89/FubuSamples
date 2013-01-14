@@ -1,13 +1,15 @@
 ﻿<viewdata model="FubuSamples.Web.Handlers.FormOutputModel" />
-<use namespace="FubuSamples.Web" />
+
 <html>
 	<head>
 		<title>Please log in, dear user</title>
 	</head>
+    #this.Asset("jquery");
+    ${ this.WriteScriptTags() }
 	<body>
 		${this.FormFor(Model)}
 			<p>
-				${this.LabelFor(m => m.Login)} ${this.InputFor(m => m.Login)}	
+                ${this.LabelFor(m => m.Login)} ${this.InputFor(m => m.Login)}	
 			</p>
 			<p>
 				${this.LabelFor(m => m.Password)} ${this.InputFor(m => m.Password)}
