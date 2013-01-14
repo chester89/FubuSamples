@@ -51,7 +51,7 @@ namespace FubuSamples.Web.Handlers
                        };
         }
 
-        public string Login(FormOutputModel model)
+        public string ComeIn(FormOutputModel model)
         {
             return string.Format("Input was {0}, {1}", model.Login, model.Password);
         }

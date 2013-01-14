@@ -24,13 +24,19 @@ namespace FubuSamples.Web.App_Start
                 // but FubuMVC just adds configuration to an IoC container so
                 // that you can use the native registration API's for your
                 // IoC container for the rest of your application
-                .StructureMap(() => new Container(new ValidationRegistry()))
+                .StructureMap(BuildContainer)
                 .Bootstrap();
 
             
 
 			// Ensure that no errors occurred during bootstrapping
 			PackageRegistry.AssertNoFailures();
+        }
+
+        static IContainer BuildContainer()
+        {
+            ObjectFactory.Initialize(cfg => cfg.AddRegistry<ValidationRegistry>());
+            return ObjectFactory.Container;
         }
     }
 }
